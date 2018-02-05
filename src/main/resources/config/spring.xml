@@ -13,32 +13,32 @@
     <context:property-placeholder location="classpath:jdbc.properties"
                                   ignore-unresolvable="true"/>
 
-    <!-- jdbc数据源文件 -->
+    <!-- jdbc数据源文件
     <bean id="dataSource"
           class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <!-- 数据库地址 -->
+        &lt;!&ndash; 数据库地址 &ndash;&gt;
         <property name="url" value="${url}"></property>
-        <!-- 用户名 -->
+        &lt;!&ndash; 用户名 &ndash;&gt;
         <property name="username" value="${name}"></property>
-        <!-- 密码 -->
+        &lt;!&ndash; 密码 &ndash;&gt;
         <property name="password" value="${password}"></property>
-        <!-- 最大连接池数量 -->
+        &lt;!&ndash; 最大连接池数量 &ndash;&gt;
         <property name="maxActive" value="${db.maxActive}"></property>
-        <!-- 初始化物理连接个数 -->
+        &lt;!&ndash; 初始化物理连接个数 &ndash;&gt;
         <property name="initialSize" value="${db.initialSize}"></property>
-        <!-- 最小连接池数量 -->
+        &lt;!&ndash; 最小连接池数量 &ndash;&gt;
         <property name="minIdle" value="${db.minIdle}"></property>
-        <!-- 最大等待时间 -->
+        &lt;!&ndash; 最大等待时间 &ndash;&gt;
         <property name="maxWait" value="${db.maxWait}"></property>
         <property name="timeBetweenEvictionRunsMillis" value="${db.timeBetweenEvictionRunsMillis}"></property>
         <property name="minEvictableIdleTimeMillis" value="${db.minEvictableIdleTimeMillis}"></property>
-        <!-- 检测连接是否有效的SQL -->
+        &lt;!&ndash; 检测连接是否有效的SQL &ndash;&gt;
         <property name="testWhileIdle" value="${db.testWhileIdle}"></property>
-        <!-- 申请连接时是否执行validationQuery -->
+        &lt;!&ndash; 申请连接时是否执行validationQuery &ndash;&gt;
         <property name="testOnBorrow" value="${db.testOnBorrow}"></property>
-        <!-- 归还连接时是否执行validationQuery -->
+        &lt;!&ndash; 归还连接时是否执行validationQuery &ndash;&gt;
         <property name="testOnReturn" value="${db.testOnReturn}"></property>
-        <!-- 配置扩展插件 统计监控:stat 日志:log4j 防御SQL注入:wall-->
+        &lt;!&ndash; 配置扩展插件 统计监控:stat 日志:log4j 防御SQL注入:wall&ndash;&gt;
         <property name="filters" value="${db.filters}"></property>
         <property name="validationQuery" value="${db.validationQuery}"></property>
     </bean>
@@ -47,13 +47,13 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <!-- 扫描entity包 -->
+        &lt;!&ndash; 扫描entity包 &ndash;&gt;
         <property name="typeAliasesPackage" value="com.moha.demo.entity" />
-        <!-- 扫描sql配置文件 -->
+        &lt;!&ndash; 扫描sql配置文件 &ndash;&gt;
         <property name="mapperLocations" value="classpath:mapping/*Mapper.xml" />
     </bean>
 
-    <!-- 自动扫描包下的dao文件 -->
+    &lt;!&ndash; 自动扫描包下的dao文件 &ndash;&gt;
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.moha.demo.dao"></property>
@@ -62,10 +62,10 @@
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
-    </bean>
+    </bean>-->
 
-    <tx:annotation-driven transaction-manager="transactionManager"
-                          proxy-target-class="true" />
+    <!--<tx:annotation-driven transaction-manager="transactionManager"
+                          proxy-target-class="true" />-->
     <bean id="threadPoolTaskExecutor"
           class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
 
@@ -90,4 +90,6 @@
             <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
         </property>
     </bean>
+
+    <import resource="spring-mongo.xml"/>
 </beans>

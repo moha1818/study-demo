@@ -3,8 +3,12 @@ package com.moha.demo.service.serviceImpl;
 import com.moha.demo.service.DemoService;
 import com.moha.demo.threadpool.StartTaskThread;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
+
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class DemoServiceImpl implements DemoService{
@@ -15,6 +19,8 @@ public class DemoServiceImpl implements DemoService{
 
     @Autowired
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
         return threadPoolTaskExecutor;
@@ -25,19 +31,20 @@ public class DemoServiceImpl implements DemoService{
         this.threadPoolTaskExecutor = threadPoolTaskExecutor;
     }
 
-    public void testThreadPoolExecutor() {
-        for (int i = 1; i <= produceTaskMaxNumber; i++) {
-            try {
-                Thread.sleep(produceTaskSleepTime);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
-            new Thread(new StartTaskThread(threadPoolTaskExecutor, i)).start();
+    public void testThreadPoolExecutor(List<String> data) {
+        Iterator iterList = data.iterator();
+        int i = 0;
+        while (iterList.hasNext()){
+            String email = (String) iterList.next();
+            new Thread(new StartTaskThread(threadPoolTaskExecutor, email,i,mongoTemplate)).start();
+            //threadPoolTaskExecutor.execute(new StartTaskThread(threadPoolTaskExecutor, email,i,mongoTemplate));
+            i++;
         }
 
     }
 
-    public void ser(){
-        testThreadPoolExecutor();
+    @Override
+    public void ser(List<String> data){
+        testThreadPoolExecutor(data);
     }
 }
