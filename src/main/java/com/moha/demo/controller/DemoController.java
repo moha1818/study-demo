@@ -2,6 +2,7 @@ package com.moha.demo.controller;
 
 import com.moha.demo.entity.View;
 import com.moha.demo.service.DemoService;
+import com.moha.demo.util.LifeBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class DemoController {
     private DemoService demoService;
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    private LifeBean lifeBean;
 
     @RequestMapping("show")
     public String demo(){
@@ -43,7 +47,18 @@ public class DemoController {
     @RequestMapping("data")
     @ResponseBody
     public String forms(String data){
-        List<String> list = Arrays.asList(data);
+        lifeBean.texts.add(String.valueOf(System.currentTimeMillis()));
+
+        System.out.println(lifeBean.product().size());
+
+        return "success";
+    }
+
+    @RequestMapping("data1")
+    @ResponseBody
+    public String forms1(String data){
+        lifeBean.texts.add(String.valueOf(System.currentTimeMillis()));
+        System.out.println(lifeBean.product().size());
         return "success";
     }
 
@@ -78,6 +93,13 @@ public class DemoController {
     }
 
 
+    public static void main(String[] args) {
+        String s1 = "testAPP";
+        String s2 = new String("testAPP");
+        String s3 = "test"+"APP";
+        System.out.println(s1 == s2);
+        System.out.println(s1 == s3);
+    }
 
 
 }

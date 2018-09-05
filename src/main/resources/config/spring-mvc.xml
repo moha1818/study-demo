@@ -107,5 +107,6 @@
         </mvc:interceptor>
     </mvc:interceptors>
 -->
-    
+    <bean id="life_singleton" class="com.moha.demo.util.LifeBean" scope="singleton"
+          init-method="init" destroy-method="destory" lazy-init="true"/>
 </beans>
