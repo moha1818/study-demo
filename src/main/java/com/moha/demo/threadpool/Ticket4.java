@@ -9,24 +9,21 @@
  * you entered into with Zhejiang GreatTao
  */
 
-package com.moha.demo.util;
+package com.moha.demo.threadpool;
 
+import java.util.Random;
 
-public class Dog implements Comparable<Dog>{
-    int size;
+public class Ticket4 implements Runnable {
+    // 当前拥有的票数
+    //AtomicInteger num = new AtomicInteger(100);
 
-    public Dog(int s) {
-        size = s;
-    }
-
-
-
-    public String toString() {
-        return size + "";
-    }
-
+    private int num = 0;
     @Override
-    public int compareTo(Dog o) {
-        return size - o.size;
-    }
+    public void run() {
+        while (num<70) {
+            int t = new Random().nextInt(10)+1;
+            num = num + t;
+            System.out.println(num);
+            }
+        }
 }

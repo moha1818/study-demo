@@ -7,7 +7,8 @@ public class Main {
     private static ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
 
     public static void main(String[] args) {
-        threadPoolTaskExecutor.initialize();
+
+        /*threadPoolTaskExecutor.initialize();
         threadPoolTaskExecutor.setCorePoolSize(4);
         threadPoolTaskExecutor.setMaxPoolSize(10);
         threadPoolTaskExecutor.setKeepAliveSeconds(300);
@@ -15,7 +16,11 @@ public class Main {
 
         for(int i=0;i<=4;i++){
             threadPoolTaskExecutor.submit(t);
-        }
+        }*/
+        Ticket4 t = new Ticket4();//创建一个线程任务对象。
+
+        Thread th = new Thread(t);
+        th.start();
 
         /*for(int i=0;i<=4;i++){
             new Thread(t).start();

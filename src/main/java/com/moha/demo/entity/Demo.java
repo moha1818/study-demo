@@ -64,4 +64,35 @@ public class Demo {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+    public Demo(Integer id, String name) {
+        this.name = name;
+        this.id = id;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null){
+            return false;
+        }
+
+        if (this == obj){
+            return true;
+        }
+
+        if (obj instanceof Demo) {
+            Demo d = (Demo) obj;
+            if(d.name.equals(this.name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
 }

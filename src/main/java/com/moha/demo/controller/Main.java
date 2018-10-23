@@ -14,6 +14,9 @@ package com.moha.demo.controller;
 
 import com.moha.demo.util.LifeBean;
 
+import java.util.Hashtable;
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
         String x=new String("+1111");
@@ -26,6 +29,16 @@ public class Main {
         System.out.println(xy.hashCode());
         System.out.println(x.equals(xy));
         System.out.println(x==xy);
+
+        Map<Object,String> map = new Hashtable<Object, String>();
+        map.put(new Dog("1"),"1");
+        map.put(new Dog("1"),"2");
+        map.put(new Dog("2"),"3");
+        map.put(new Dog("3"),null);
+
+        for(Map.Entry<Object,String> entry : map.entrySet()){
+            System.out.println(entry.getKey().toString() + " - " + entry.getValue());
+        }
 
 
         LifeBean lifeBean = new LifeBean();
