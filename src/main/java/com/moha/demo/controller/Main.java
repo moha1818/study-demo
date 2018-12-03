@@ -12,10 +12,14 @@
 package com.moha.demo.controller;
 
 
+import com.moha.demo.entity.Demo;
 import com.moha.demo.util.LifeBean;
 
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,12 +38,11 @@ public class Main {
         map.put(new Dog("1"),"1");
         map.put(new Dog("1"),"2");
         map.put(new Dog("2"),"3");
-        map.put(new Dog("3"),null);
+        map.put(new Dog("3"),"1");
 
         for(Map.Entry<Object,String> entry : map.entrySet()){
             System.out.println(entry.getKey().toString() + " - " + entry.getValue());
         }
-
 
         LifeBean lifeBean = new LifeBean();
         LifeBean lifeBean1 = new LifeBean();
@@ -49,5 +52,15 @@ public class Main {
 
         char a = '1';
         System.out.println(1+a);
+
+
+        List<Demo> list = Arrays.asList(new Demo(1,"1"),new Demo(2,"2"));
+        List<Integer> lista = list.stream().map(demo -> demo.getId()).collect(Collectors.toList());
+
+
+        System.out.println(lista);
+
+
     }
+
 }

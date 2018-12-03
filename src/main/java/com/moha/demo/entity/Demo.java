@@ -71,28 +71,28 @@ public class Demo {
     }
 
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null){
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null){
+                return false;
+            }
+
+            if (this == obj){
+                return true;
+            }
+
+            if (obj instanceof Demo) {
+                Demo d = (Demo) obj;
+                if(d.name.equals(this.name)){
+                    return true;
+                }
+            }
             return false;
         }
 
-        if (this == obj){
-            return true;
+        @Override
+        public int hashCode() {
+            return name.hashCode();
         }
-
-        if (obj instanceof Demo) {
-            Demo d = (Demo) obj;
-            if(d.name.equals(this.name)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
 
 }
