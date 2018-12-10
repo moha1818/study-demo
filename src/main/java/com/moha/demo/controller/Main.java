@@ -15,6 +15,7 @@ package com.moha.demo.controller;
 import com.moha.demo.entity.Demo;
 import com.moha.demo.util.LifeBean;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
@@ -58,8 +59,27 @@ public class Main {
         List<Integer> lista = list.stream().map(demo -> demo.getId()).collect(Collectors.toList());
 
 
-        System.out.println(lista);
+        String ssa = "大型机械及设备大型机械及设备\n" +
+                "                                                        \n" +
+                "                                                            小型机械小型机械\n" +
+                "                                                        \n" +
+                "                                                         ";
 
+
+        System.out.println(ssa.replaceAll("\\n" ,""));
+
+
+
+
+
+        String email = "www@qq.com";
+        String[] param = email.split("@");
+        param[0] = "***";
+
+
+        SimpleDateFormat sdfelse = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        System.out.println(System.currentTimeMillis());
 
     }
 
