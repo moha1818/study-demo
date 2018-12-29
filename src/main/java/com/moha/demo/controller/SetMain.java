@@ -30,7 +30,7 @@ public class SetMain {
         List<View> views = Arrays.asList(veo,veo1,veo2);
         List<View> unique = views.stream().collect(
                 Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(View::getId))), ArrayList::new)
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(View::getName))), ArrayList::new)
         );
         unique.forEach(p -> System.out.println(p.getId()));
 

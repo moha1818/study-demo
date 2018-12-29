@@ -16,10 +16,7 @@ import com.moha.demo.entity.Demo;
 import com.moha.demo.util.LifeBean;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -54,10 +51,13 @@ public class Main {
         char a = '1';
         System.out.println(1+a);
 
+        List<Demo> list = Arrays.asList(new Demo(1,"1"),new Demo(2,"2"),new Demo(3,"afssaf <img id=\"img1\" src=\"images/picture1.png\" onclick=\"change()\"> fsafsaf"));
+        List<String> lista = list.stream().map(demo -> demo.getName()).filter(q->!"".equals(q)).collect(Collectors.toList());
 
-        List<Demo> list = Arrays.asList(new Demo(1,"1"),new Demo(2,"2"));
-        List<Integer> lista = list.stream().map(demo -> demo.getId()).collect(Collectors.toList());
+        lista = lista.stream().map(q->q = q.replaceAll("<img(?:.|\\s)*?>","")).collect(Collectors.toList());
 
+        String se = "afssaf <img id=\"img1\" src=\"images/picture1.png\" onclick=\"change()\"> fsafsaf";
+        se = se.replaceAll("<img(?:.|\\s)*?>","");
 
         String ssa = "大型机械及设备大型机械及设备\n" +
                 "                                                        \n" +
@@ -80,6 +80,12 @@ public class Main {
         SimpleDateFormat sdfelse = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
         System.out.println(System.currentTimeMillis());
+
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        System.out.println(calendar.get(Calendar.MINUTE));
+
 
     }
 
