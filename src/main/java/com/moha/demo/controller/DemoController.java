@@ -175,7 +175,7 @@ public class DemoController {
         });
         System.out.println("2"+System.currentTimeMillis());
         System.out.println("/asynctask 调用！thread id is : " + Thread.currentThread().getId());
-        final HttpGet request2 = new HttpGet("http://www.apache.org/");
+        final HttpGet request2 = new HttpGet("http://www.baidu.com/");
         httpclient.execute(request2, new FutureCallback<HttpResponse>() {
 
             public void completed(final HttpResponse response2) {

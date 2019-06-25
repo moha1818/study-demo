@@ -42,7 +42,7 @@ public class CountDownTask {
             orderInfo.setOtherInfo(new OtherInfo());
             countDownLatch.countDown();
         });
-        countDownLatch.await(1, TimeUnit.SECONDS);
+        countDownLatch.await(15, TimeUnit.SECONDS);
         System.out.println("主线程："+ Thread.currentThread().getName());
         System.out.println(orderInfo);
     }
